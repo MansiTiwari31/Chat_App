@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <div class="container">
+      <div id="overlay"  >
+        <div style="min-width: 20vw;" class="card p-3">
+          <label for="inputPassword5" class="form-label">Name</label>
+            <input type="text" id="inputPassword5" class="form-control" autocomplete="off" aria-describedby="passwordHelpBlock" style="outline: none; margin-bottom: 5px;">
+            <div id="passwordHelpBlock" class="form-text">
+              
+            </div>
+            <button id="enter" type="button" class="btn btn-success" style="border:none; background-color:rgb(151, 38, 244);">Start the chat</button>
+        </div>
+      </div>
+      
+        <div id="maintop">
+          <h6></h6>
+          <div  class="position-absolute  card online">
+            <small class="mt-0" >Online (<span id="onlinenum">0</span>) </small>
+            <div class="names mt-0">
+              <!-- <hr>
+                
+                <small>monika</small>
+                <small>monika</small>
+                <small>monika</small>
+                <small>monika</small> -->
+            </div>
+          </div>
+          <div id="top">
+          
+          </div>
+        </div>
+    
+      <div id="bottom">
+         <textarea name="text" id="text" cols="30" rows="10" ></textarea>
+         <button id="send">Send</button>
+      </div>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <script>
+        var socket = io();
+        let naam = "unknowm user";
+        var clutter = `<hr>`;
+        var timeout;
+        
+        
+        document.querySelector("#enter").addEventListener("click",function(){
+          if(document.querySelector("input").value.trim().length > 0){
+            naam = document.querySelector("input").value;
+            socket.emit("naam",naam)
+            document.querySelector("#overlay").style.display="none";
+          }
+        });
+
+        document.querySelector("#send").addEventListener("click",function(){
+          socket.emit("msg",document.querySelector("textarea").value);
+          document.querySelector("#text").value = "";
+        });
+
+        socket.on("msg" , function(data){
+          document.querySelector("#top").innerHTML += `<div id="top1"><span>${data.connection}</span><br>${data.msg}</div>`
+          var objDiv = document.querySelector("#maintop");
+          objDiv.scrollTop = objDiv.scrollHeight;
+         
+       });
+
+       //document.querySelector("#text").addEventListener("input", function(){
+        //console.log("typing...")
+       //socket.emit("typing", data)
+        
+       //})
+
+       //socket.on("typing", function(data){
+        //document.querySelector("#top").innerHTML = `<h6>${data.typing}</h6>`
+       //})
+       
+      document.querySelector("textarea")
+      .addEventListener("input", function () {
+        //console.log('typing...')
+        socket.emit("typing");
+      });
+
+      socket.on("typing", function (usernamee) {
+        clearTimeout(timeout);
+      document.querySelector("#maintop h6").innerHTML = `<i>${usernamee} is typing </i>`;
+      
+      timeout = setTimeout(function () {
+        document.querySelector("#maintop h6").innerHTML =" ";
+      }, 1200)
+    })
+
+    /*document.querySelector(".online")
+      .addEventListener("click", function () {
+        document.querySelector(".names").style.display = "initial";
+      })*/
+      
+      socket.on("Onlineusers" ,function(data){
+        console.log(data)
+          var clutter = ``;
+          
+          document.querySelector("#onlinenum").textContent = data.length;
+          data.forEach(function(elem){
+            clutter += `<small>${elem} <div id=green ></div></small>`;
+          });
+          
+          document.querySelector(".online").addEventListener("click" , function(){
+          document.querySelector(".names").innerHTML = clutter;
+          
+         
+          })
+          
+          
+        }); 
+        
+    </script>
+  </body>
+</html>

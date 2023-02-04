@@ -1,0 +1,143 @@
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#overlay{
+  background-color: rgba(0, 0, 0, 0.541); 
+  height:100vh; 
+  position: absolute;
+  z-index: 9;  
+  width: 100%; 
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+}
+.card{
+  background-color:rgb(244, 250, 249);
+  padding: 10px;
+  border-radius: 2px;
+}
+#enter{
+  padding: 4px;
+  border-radius: 2px;
+  color: lavender;
+  width: 100%;
+}
+.container{
+  height: 100vh;
+  width: 100vw ;
+}
+#maintop{
+  height: 77%;
+  overflow: auto;
+  width: 90vw ;
+ position: absolute;
+  top: 2%;
+  left: 5%;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+#maintop::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+  position: static;
+}
+#top{
+  z-index: 10;
+  height: fit-content;
+  
+ 
+}
+#text{
+  height: 6.5vh;
+  width: 90vw ;
+  position: absolute;
+  bottom: 11%;
+  left: 5%;
+  border: 1px solid black;
+  border-radius: 4px;
+  outline: none;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+}
+#bottom button{
+  color: whitesmoke;
+  padding: 5px 10px;
+  border:none; background-color: rgb(151, 38, 244);;
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  border-radius: 4px;
+}
+
+#top1{
+  
+  height:35px;
+  width: fit-content;
+  background-color: lavender;
+  margin: 5px;
+  border-radius: 4px;
+  padding: 0px 10px 0px 7px;
+  line-height: 14px;
+  font-size: 13px ;
+}
+#top span{
+  color: red;
+  font-size: 10px;
+}
+#bottom{
+  z-index: 8;
+}
+#maintop h6{
+  position: fixed;
+  bottom: 23%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.online{
+  
+  position:absolute;
+  width:80px; z-index:5; right: 0;
+  padding: 1px 7px 5px 9px;
+  margin: 5px;
+  background-color: lavender;
+  border-radius: 4px 4px 4px 4px;
+}
+/*.online #whole i{
+  background-color: rgb(227, 227, 227);
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 33.5px;
+  padding-right: 33px;
+  position:absolute;
+  right: 0.2px;
+  border-radius: 0px 0px 4px 4px;
+  z-index: 4;
+}*/
+#green{
+   margin-top: -19%;
+   margin-left: 70%;
+  height: 8px;
+  width: 8px;
+  
+  background-color: rgb(2, 141, 2);
+  border-radius: 50%;
+}
+small{
+  line-height: 7px;
+}
+/*#min i{
+  background-color: rgb(227, 227, 227);
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 33.5px;
+  padding-right: 33px;
+  position:absolute;
+  right: 0.2px;
+  bottom: 0%;
+  border-radius: 0px 0px 4px 4px;
+  display: none;
+}*/
